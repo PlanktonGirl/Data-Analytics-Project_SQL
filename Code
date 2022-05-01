@@ -1,0 +1,22 @@
+SELECT 
+   `sql-exercise-for-course.CapstoneProject.DailyActivity`.ActivityDate,
+    AVG(TotalSteps) AS average_steps,
+    AVG(TotalDistance) AS average_distance,
+    AVG(VeryActiveDistance) AS avg_very_active_dist,
+    AVG(ModeratelyActiveDistance) AS avg_mod_active_dist,
+    AVG(LightActiveDistance) AS avg_light_dist,
+    AVG(SedentaryActiveDistance) AS avg_sed_dist,
+    AVG(VeryActiveMinutes) AS avg_very_active_min,
+    AVG(FairlyActiveMinutes) AS avg_fairly_active_min,
+    AVG(LightlyActiveMinutes) AS avg_light_active_min,
+    AVG(SedentaryMinutes) AS avg_sed_min,
+    AVG(Calories) AS avg_calories_burned_day,
+    AVG(TotalMinutesAsleep) AS avg_min_sleep,
+FROM `sql-exercise-for-course.CapstoneProject.DailyActivity` 
+FULL JOIN `sql-exercise-for-course.CapstoneProject.SleepDay`
+    ON `sql-exercise-for-course.CapstoneProject.DailyActivity`.id = `sql-exercise-for-course.CapstoneProject.SleepDay`.id
+    AND `sql-exercise-for-course.CapstoneProject.DailyActivity`.ActivityDate = `sql-exercise-for-course.CapstoneProject.SleepDay`.SleepDay
+FULL JOIN `sql-exercise-for-course.CapstoneProject.WeightLog`
+    ON `sql-exercise-for-course.CapstoneProject.DailyActivity`.id = `sql-exercise-for-course.CapstoneProject.WeightLog`.id
+    AND `sql-exercise-for-course.CapstoneProject.DailyActivity`.ActivityDate = `sql-exercise-for-course.CapstoneProject.WeightLog`.date
+GROUP BY `sql-exercise-for-course.CapstoneProject.DailyActivity`.ActivityDate
